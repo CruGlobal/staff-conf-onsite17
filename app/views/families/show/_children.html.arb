@@ -1,0 +1,18 @@
+context.instance_exec do
+  children = family.children.load
+
+  panel 'Family Members' do
+    if children.any?
+      ul do
+        children.each do |p|
+          li link_to(p.full_name, child_path(p))
+        end
+      end
+    else
+      strong 'None'
+    end
+    div do
+      a 'New Child or Family Member', href: new_child_path(family_id: family.id)
+    end
+  end
+end

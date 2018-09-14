@@ -1,0 +1,13 @@
+<%=  stylesheet_link_tag('jquery-ui/autocomplete') %>
+<%= text_field_tag :family_id, '', style: 'width: 500px;height:', placeholder: 'Search for a family', id: 'search' %>
+
+<br><br>
+<script type="text/javascript" charset="utf-8">
+    $( "#search" ).autocomplete({
+        source: {},
+        select: function(event, ui) {
+            document.location = '/families/' + ui.item.value + '/summary';
+            return false;
+        }
+    });
+</script>

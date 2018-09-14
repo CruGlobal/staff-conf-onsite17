@@ -1,0 +1,11 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column :name
+  column(:description) { |c| html_summary(c.description) }
+  column :min_days
+  column :created_at
+  column :updated_at
+end

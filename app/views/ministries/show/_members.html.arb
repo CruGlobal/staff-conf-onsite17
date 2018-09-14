@@ -1,0 +1,15 @@
+context.instance_exec do
+  num_members = ministry.people.size
+
+  panel "Members (#{num_members})", class: 'members' do
+    if num_members.positive?
+      ul do
+        ministry.people.each do |p|
+          li { link_to(p.full_name, p) }
+        end
+      end
+    else
+      strong('None')
+    end
+  end
+end

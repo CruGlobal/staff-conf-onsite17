@@ -1,0 +1,17 @@
+<%= image_tag(image_url('logo.png', host: ActionController::Base.asset_host), size: '50') %>
+
+<p>Welcome to Summer17/Cru17!</p>
+
+<p>Below is your conference registration summary.
+
+<p>For questions regarding: </p>
+<ul>
+  <li>Kids Care / Kids Camp, please contact Cru17.Childcare@cru.org </li>
+  <li>Jr. High / Sr. High Program, please contact Cru17.JrSrHigh@cru.org </li>
+  <li>finances, please contact Cru17.Finance@cru.org</li>
+  <li>anything else, please contact Cru17.Info@cru.org</li>
+</ul>
+<p>Sincerely, <br><br>
+  Team17</p>
+
+<%= render 'families/family_summary', family: @family, finances: @finances, policy: @policy %>

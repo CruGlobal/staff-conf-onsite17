@@ -1,0 +1,19 @@
+# vim:ft=ruby:
+panel 'Finances', class: 'finances_panel' do
+  render 'cost_adjustments/summary_table', results: {
+    'Staff Conference' => StaffConference::SumFamilyCost.call(family: family),
+    'Other Conferences' => Conference::SumFamilyCost.call(family: family),
+
+    'Classes' => Course::SumFamilyCost.call(family: family),
+    'Rec Pass' => RecPass::SumFamilyCost.call(family: family),
+    'Childcare' => Childcare::SumFamilyCost.call(family: family),
+    'Junior/Senior' => JuniorSenior::SumFamilyCost.call(family: family),
+    'Hot Lunches' => HotLunch::SumFamilyCost.call(family: family),
+    'Adult Apartment Housing' =>
+      Stay::SumFamilyAttendeesApartmentCost.call(family: family),
+    'Adult Dormitory Housing' =>
+      Stay::SumFamilyAttendeesDormitoryCost.call(family: family),
+    'Children Housing' => Stay::SumFamilyChildrenCost.call(family: family),
+    'Facility Use Fee' => FacilityUseFee::SumFamilyCost.call(family: family)
+  }
+end

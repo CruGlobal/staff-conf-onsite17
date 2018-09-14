@@ -1,0 +1,5 @@
+context.instance_exec do
+  actions
+  column(:category)
+  column(:name)
+end

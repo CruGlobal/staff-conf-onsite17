@@ -1,0 +1,9 @@
+.example-spreadsheet {
+  $border: 1px solid #5E6469;
+
+  border: $border;
+
+  td {
+    border: $border;
+  }
+}

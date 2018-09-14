@@ -1,0 +1,5 @@
+# There is a vulnerability in rubyzip < 1.2.1. However, we can't update this
+# gem to a new version until a new version of the 'axlsx' gem is released.
+# However, this vulnerability doesn't affect us anyway, because this sit
+# doesn't support .zip uploads.
+CVE-2017-5946

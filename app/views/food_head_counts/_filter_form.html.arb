@@ -1,0 +1,17 @@
+# vim:ft=ruby:
+form action: food_head_counts_path, method: :get, class: 'filter_form' do
+  div class: 'date_range input optional stringish filter_form_field filter_date_range' do
+    label 'Date Range', class: 'label'
+    input size: 12, class: 'datepicker', maxlength: 10, type: :text,
+      name: :start_at, value: params[:start_at]
+    span '-', class: 'seperator'
+    input size: 12, class: 'datepicker', maxlength: 10, type: :text,
+      name: :end_at, value: params[:end_at]
+  end
+
+  div class: 'buttons' do
+    input type: :submit, name: :commit, value: 'Filter'
+    a 'Clear Filters', href: food_head_counts_path, class: 'clear_filters_btn'
+  end
+end
+

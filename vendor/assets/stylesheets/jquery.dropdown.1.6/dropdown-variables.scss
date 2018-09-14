@@ -1,0 +1,92 @@
+/**
+ *
+ *	Dropdown variables
+ *
+ *	================================================================
+ *
+ *	$since			1.4.0
+ *
+ */
+
+
+/**
+ *	=Sizing
+ *	---------------------------------------------------------------- */
+
+$dropdown-size: 14px !default;
+$dropdown-line-height: 1.5 !default;
+
+// Mobile
+$dropdown-mobile-spacing:    10px !default;
+$dropdown-mobile-breakpoint: 600px !default;
+
+// Icons
+$dropdown-icon-size: $dropdown-size !default;
+
+// Menus
+$dropdown-menu-width:   280px !default;
+$dropdown-menu-spacing: 5px !default;
+
+// Labels
+$dropdown-label-size: 11px !default;
+
+// Items
+$dropdown-item-spacing-v: 10px !default;
+$dropdown-item-spacing-h: 15px !default;
+
+// Toggle
+$dropdown-toggle-spacing-v: $dropdown-item-spacing-v !default;
+$dropdown-toggle-spacing-h: $dropdown-item-spacing-h !default;
+
+
+/**
+ *	=Styles
+ *	---------------------------------------------------------------- */
+
+// Background
+$dropdown-bg: #fff !default;
+
+// Overlay
+$dropdown-overlay-bg: #000 !default;
+
+// Borders
+$dropdown-border-color: #e0e0e0 !default;
+
+// Title
+$dropdown-title-color: inherit !default;
+
+// Labels
+$dropdown-label-color: #aaa !default;
+
+// Items
+$dropdown-item-bg:          $dropdown-bg !default;
+$dropdown-item-hover-bg:    #f2f2f2 !default;
+$dropdown-item-focus-bg:    #eee !default;
+$dropdown-item-selected-bg: #428bca !default;
+
+$dropdown-item-color:          #333 !default;
+$dropdown-item-hover-color:    #262626 !default;
+$dropdown-item-focus-color:    #161616 !default;
+$dropdown-item-selected-color: #fff !default;
+
+// Buttons
+$dropdown-button-bg:       $dropdown-item-bg !default;
+$dropdown-button-hover-bg: $dropdown-item-hover-bg !default;
+
+$dropdown-button-color:       $dropdown-item-color !default;
+$dropdown-button-hover-color: $dropdown-item-hover-color !default;
+
+// Toggle
+$dropdown-toggle-bg:       $dropdown-bg !default;
+$dropdown-toggle-hover-bg: $dropdown-toggle-bg !default;
+$dropdown-toggle-open-bg:  $dropdown-bg !default;
+
+$dropdown-toggle-color:       $dropdown-item-color !default;
+$dropdown-toggle-hover-color: $dropdown-item-hover-color !default;
+$dropdown-toggle-open-color:  $dropdown-toggle-hover-color !default;
+
+// Border radius
+$dropdown-border-radius: 1px !default;
+
+// Box shadow
+$dropdown-box-shadow: 0 1px 2px rgba(0,0,0,.15) !default;

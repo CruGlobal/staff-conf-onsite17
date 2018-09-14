@@ -1,0 +1,52 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  columns do
+    column do
+      inputs 'Basic', class: 'basic' do
+        render 'people/form/family_selector', form: self
+
+        input :first_name
+        if param_family
+          input :last_name, input_html: { value: param_family.last_name }
+        else
+          input :last_name
+        end
+
+        input :name_tag_first_name
+        input :name_tag_last_name
+
+        input :gender, as: :select, collection: gender_select
+        datepicker_input(self, :birthdate)
+
+        input :grade_level, as: :select, collection: grade_level_select,
+          include_blank: true
+        input :parent_pickup
+        input :needs_bed
+      end
+
+      inputs 'Rec Center Pass' do
+        datepicker_input(self, :rec_pass_start_at,
+                         label: 'Rec Center Pass Start Date')
+        datepicker_input(self, :rec_pass_end_at,
+                         label: 'Rec Center Pass End Date')
+      end
+
+      inputs 'Requested Arrival/Departure' do
+        datepicker_input(self, :arrived_at)
+        datepicker_input(self, :departed_at)
+      end
+
+      render 'children/form/childcare', form: self
+    end
+
+    column do
+      render 'people/form/cost_adjustments', form: self
+      render 'people/form/stays', form: self
+      render 'people/form/meal_exemptions', form: self, person: child
+    end
+  end
+
+  actions
+end

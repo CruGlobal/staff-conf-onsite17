@@ -1,0 +1,30 @@
+# vim:ft=ruby:
+panel 'Total' do
+  table(class: 'totals-table') do
+    tbody do
+      tr do
+        td 'Charges'
+        td humanized_money_with_symbol(finances.subtotal),
+          class: 'totals-table__amount'
+      end
+      tr do
+        td 'Payments'
+        td humanized_money_with_symbol(finances.paid),
+          class: 'totals-table__amount'
+      end
+      unless finances.staff_number_balance.zero?
+        tr do
+          td format('Charge Staff Account: %s', finances.staff_number)
+          td humanized_money_with_symbol(finances.unpaid),
+            class: 'totals-table__amount'
+        end
+      end
+      tr do
+        td 'Remaining Balance Due'
+        td humanized_money_with_symbol(finances.remaining_balance),
+          class: 'totals-table__amount'
+      end
+    end
+  end
+end
+

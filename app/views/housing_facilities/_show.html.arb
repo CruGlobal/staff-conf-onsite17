@@ -1,0 +1,22 @@
+# vim:ft=ruby:
+context.instance_exec do
+  attributes_table do
+    row :name
+    row(:housing_type) { |hf| hf.housing_type.titleize }
+    row(:cost_code) { |hf| link_to(hf.cost_code, hf.cost_code) if hf.cost_code }
+    row :cafeteria
+    row :on_campus
+
+    row :city
+    row :state
+    row :street
+    row(:country_code) { |hf| country_name(hf.country_code) }
+    row :zip
+
+    row :csu_dorm_code
+    row :csu_dorm_block
+
+    row :created_at
+    row :updated_at
+  end
+end

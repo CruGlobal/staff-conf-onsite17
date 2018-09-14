@@ -1,0 +1,30 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row(:name) { |c| strong c.name }
+        row(:description) { |c| html_summary(c.description) }
+        row :min_days
+        row :created_at
+        row :updated_at
+      end
+    end
+
+    column do
+      panel 'Charges' do
+        attributes_table_for cost_code.charges.order(:max_days) do
+          row(:max_days) { |c| strong c.max_days }
+          row(:adult) { |c| humanized_money_with_symbol(c.adult) }
+          row(:teen) { |c| humanized_money_with_symbol(c.teen) }
+          row(:child) { |c| humanized_money_with_symbol(c.child) }
+          row(:infant) { |c| humanized_money_with_symbol(c.infant) }
+          row(:child_meal) { |c| humanized_money_with_symbol(c.child_meal) }
+          row(:single_delta) { |c| humanized_money_with_symbol(c.single_delta) }
+        end
+      end
+    end
+  end
+
+  active_admin_comments
+end

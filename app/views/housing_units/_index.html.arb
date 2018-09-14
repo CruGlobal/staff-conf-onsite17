@@ -1,0 +1,10 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column :name
+  column :occupancy_type
+  column :created_at
+  column :updated_at
+end

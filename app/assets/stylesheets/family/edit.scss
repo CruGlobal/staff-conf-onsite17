@@ -1,0 +1,9 @@
+.housing_preference_attributes {
+  .confirmed_at {
+    &__toggle {
+      @extend .status_tag !optional;
+
+      cursor: pointer;
+    }
+  }
+}

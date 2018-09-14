@@ -1,0 +1,14 @@
+# vim:ft=ruby:
+tr { th title, colspan: 2, class: 'finances-table__title' }
+
+if collection.any?
+  collection.each { |row| render 'family_finances/row', row: row }
+else
+  tr do
+    td { em 'None...' }
+
+    td(class: "finances-table__price #{'print-only' unless policy.show_finances?}") do
+      humanized_money_with_symbol 0
+    end
+  end
+end

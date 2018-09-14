@@ -1,0 +1,48 @@
+# vim:ft=ruby:
+def count_row(count)
+  td(count, class: ('chosen-disabled' if count.zero?))
+end
+
+table do
+  thead do
+    tr do
+      th 'Date'
+
+      th 'Adult Breakfast'
+      th 'Adult Lunch'
+      th 'Adult Dinner'
+
+      th 'Teen Breakfast'
+      th 'Teen Lunch'
+      th 'Teen Dinner'
+
+      th 'Child Breakfast'
+      th 'Child Lunch'
+      th 'Child Dinner'
+    end
+  end
+
+  tbody do
+    date_counts.rows.each_with_index do |(date, daily), row_index|
+      daily.counts.each_with_index.each do |counts, date_index|
+        tr(class: row_index.odd? ? :odd : :even) do
+          if date_index.zero?
+            td(rowspan: daily.counts.size) { strong l(date, format: :month) }
+          end
+
+          count_row counts[:adult_breakfast]
+          count_row counts[:adult_lunch]
+          count_row counts[:adult_dinner]
+
+          count_row counts[:teen_breakfast]
+          count_row counts[:teen_lunch]
+          count_row counts[:teen_dinner]
+
+          count_row counts[:child_breakfast]
+          count_row counts[:child_lunch]
+          count_row counts[:child_dinner]
+        end
+      end
+    end
+  end
+end

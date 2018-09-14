@@ -1,0 +1,40 @@
+# vim:ft=ruby:
+panel link_to("Housing Assignments (#{person.stays.size})", housing_path(family_id: person.family_id)), class: 'stays' do
+  if person.stays.any?
+    attributes_table_for person.stays.order(:arrived_at) do
+      row(:housing_type) { |stay| strong housing_type_label(stay.housing_type) }
+
+      row(:housing_facility) do |stay|
+        facility = stay.housing_unit&.housing_facility
+        link_to facility.name, housing_facility_path(facility) if facility
+      end
+
+      row :housing_unit
+
+      row :arrived_at
+      row :departed_at
+
+      row 'Requested Arrival/Departure' do |stay|
+        if stay.arrived_at.present? && stay.departed_at.present?
+          pluralize (stay.departed_at.mjd - stay.arrived_at.mjd), 'Day'
+        else
+          strong 'N/A'
+        end
+      end
+
+      Stay::HOUSING_TYPE_FIELDS.each do |attribute, types|
+        row attribute do |stay|
+          if types.include?(stay.housing_type.to_sym)
+            simple_format_attr(stay, attribute)
+          else
+            span('N/A', class: 'empty')
+          end
+        end
+      end
+
+      row(:comment) { |stay| html_full stay.comment }
+    end
+  else
+    strong('None')
+  end
+end

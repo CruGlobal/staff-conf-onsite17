@@ -1,0 +1,32 @@
+# vim:ft=ruby:
+form_for "spreadsheet_#{action}", url: {action: action},
+    html: {multipart: true, class: 'upload-job-js' } do |f|
+  fieldset class: 'inputs' do
+    ol do
+      li class: 'file input' do
+        f.label :file, 'Select a File'
+        f.file_field :file
+        para class: 'inline-hints' do
+          'Must be an .ods, .csv, .xls, or .xlsx file.'
+        end
+      end
+      li class: 'boolean input' do
+        label do
+          f.check_box :skip_first
+          span 'Skip Header Row'
+        end
+      end
+    end
+  end
+
+  fieldset class: 'actions' do
+    ol do
+      li class: 'action input_action' do
+        submit_tag 'Submit'
+      end
+      li class: 'cancel' do
+        link_to 'Cancel', ministries_path
+      end
+    end
+  end
+end

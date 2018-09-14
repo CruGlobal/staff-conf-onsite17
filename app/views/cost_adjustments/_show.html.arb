@@ -1,0 +1,14 @@
+# vim:ft=ruby:
+context.instance_exec do
+  attributes_table do
+    row('Person') { |ca| link_to(ca.person.full_name, ca.person) }
+    row('Type') { |ca| cost_type_name(ca) }
+    row(:price) do |ca|
+      humanized_money_with_symbol(ca.price) if ca.price.present?
+    end
+    row(:percent) { |ca| "#{ca.percent}%" if ca.percent.present? }
+    row(:description) { |ca| html_full(ca.description) }
+    row :created_at
+    row :updated_at
+  end
+end

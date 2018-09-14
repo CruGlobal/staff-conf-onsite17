@@ -1,0 +1,14 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column :code
+  column :name
+  column(:parent) { |m| m.parent.to_s }
+  column 'Members' do |m|
+    link_to(m.people.count, attendees_path(q: { ministry_id_eq: m.id }))
+  end
+  column :created_at
+  column :updated_at
+end

@@ -1,0 +1,15 @@
+# vim:ft=ruby:
+panel "Cost Adjustments (#{cost_adjustments.size})", class: 'cost_adjustments' do
+  if cost_adjustments.any?
+    ul do
+      cost_adjustments.each do |ca|
+        li do
+          link_to("#{cost_adjustment_amount(ca)} - #{cost_type_name(ca)}", ca)
+        end
+      end
+    end
+  else
+    strong('None')
+  end
+end
+

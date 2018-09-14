@@ -1,0 +1,20 @@
+// CK Editor Fixes
+// see https://github.com/activeadmin/activeadmin/wiki/Ckeditor-integration
+.cke_chrome {
+  width: 79.5% !important;
+  overflow: hidden;
+}
+
+.input.boolean.destroy {
+  margin-top: 1em;
+  color: #932419;
+
+  label {
+    color: #932419;
+  }
+}
+
+.input.string input[readonly] {
+  background: none;
+  border: none;
+}

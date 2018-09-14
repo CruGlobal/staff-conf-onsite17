@@ -1,0 +1,19 @@
+# vim:ft=ruby:
+form.instance_exec do
+  collection = [:course_attendances, object.course_attendances]
+
+  panel 'Courses' do
+    inputs class: 'course-inputs' do
+      input :student_number
+      input :ibs_comment, input_html: { rows: 4 }
+    end
+
+    has_many :course_attendances, heading: nil, collection:
+      collection, new_record: 'Add New Course' do |f|
+      f.input :course, include_blank: false, collection: courses_select
+      f.input :grade, collection: CourseAttendance.grades
+      f.input :seminary_credit
+      f.input :_destroy, as: :boolean, wrapper_html: { class: 'destroy' }
+    end
+  end
+end

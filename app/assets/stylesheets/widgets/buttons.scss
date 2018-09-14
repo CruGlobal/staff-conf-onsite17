@@ -1,0 +1,59 @@
+/**
+ * ActiveAdmin's default button style is not extendable, as it's rule is
+ * overly-specific (#title_bar .action_items span.action_item), so we re-create
+ * it here, so it can be used in more places.
+ */
+.action_item_button {
+  border-radius: 200px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.0em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 12px;
+  margin-right: 3px;
+  padding: 7px 16px 6px;
+  text-decoration: none;
+  background-color: #fff;
+  background-image: linear-gradient(180deg, #fff, #e7e7e7);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0 rgba(255, 255, 255, 0.8) inset;
+  border: solid 1px #c7c7c7;
+  border-color: #c7c7c7;
+  border-top-color: #d3d3d3;
+  border-right-color: #c7c7c7;
+  border-bottom-color: #c2c2c2;
+  border-left-color: #c7c7c7;
+  text-shadow: #fff 0 1px 0;
+  color: #5E6469;
+  padding: 12px 17px 10px;
+  margin: 0px;
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  &:not(.disabled):hover {
+    background-color: #fff;
+    background-image: linear-gradient(180deg, #fff, #f1f1f1);
+  }
+
+  &:not(.disabled):active {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.22) inset, 0 1px 0 0px #eee;
+    border-color: #b9b9b9;
+    border-top-color: #c2c2c2;
+    border-right-color: #b9b9b9;
+    border-bottom-color: #b7b7b7;
+    border-left-color: #b9b9b9;
+    background-color: #f3f3f3;
+    background-image: linear-gradient(180deg, #f3f3f3, #d8d8d8);
+  }
+}
+
+
+.action_items {
+  .action_item {
+    & > a, & > .dropdown_menu > a {
+      @extend .action_item_button;
+    }
+  }
+}

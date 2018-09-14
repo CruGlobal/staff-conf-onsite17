@@ -1,0 +1,33 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row :name
+        row :teachers
+        row :location
+        row :room
+        row :created_at
+        row :updated_at
+      end
+    end
+
+    column do
+      size = childcare.children.size
+
+      panel "Children (#{size})" do
+        if size.positive?
+          ul do
+            childcare.children.each do |c|
+              li { link_to(c.full_name, c) }
+            end
+          end
+        else
+          strong('None')
+        end
+      end
+    end
+  end
+
+  active_admin_comments
+end

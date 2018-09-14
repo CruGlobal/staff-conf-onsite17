@@ -1,0 +1,30 @@
+# vim:ft=ruby:
+context.instance_exec do
+    actions
+    selectable_column if policy.bulk_edit?
+
+    column :first_name
+    column :last_name
+    column(:family) { |c| link_to family_label(c.family), family_path(c.family) }
+    column(:gender) { |c| gender_name(c.gender) }
+    column(:birthdate) { |c| birthdate_label(c) }
+    column(:age, sortable: :birthdate) { |c| age(c) }
+    column(:grade_level) { |c| grade_level_label(c) }
+
+    column(:childcare) do |child|
+      unless child.too_old_for_childcare?
+        collection =
+          Childcare.all.order(:position, :name).map { |c| [c.name, c.id] }
+
+        active_admin_form_for child do |f|
+          f.inputs do
+            f.input :childcare_id,
+                    as: :select,
+                    collection: collection,
+                    label: false,
+                    input_html: { 'data-path' => child_path(child) }
+          end
+        end
+      end
+    end
+end

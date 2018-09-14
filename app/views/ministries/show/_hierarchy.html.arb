@@ -1,0 +1,25 @@
+context.instance_exec do
+  panel 'Hierarchy', class: 'hierarchy' do
+    div class: 'ministry__hierarchy' do
+      if ministry.ancestors.any?
+        ul class: 'ministry__hierarchy__ancestors' do
+          ministry.ancestors.each do |m|
+            li(class: 'ministry__hierarchy__ancestor') { link_to m, m }
+          end
+        end
+      end
+
+      div(class: 'ministry__hierarchy__this') { ministry }
+
+      if ministry.children.any?
+        ul class: 'ministry__hierarchy__children' do
+          ministry.children.each do |child|
+            li class: 'ministry__hierarchy__child' do
+              link_to child, child
+            end
+          end
+        end
+      end
+    end
+  end
+end

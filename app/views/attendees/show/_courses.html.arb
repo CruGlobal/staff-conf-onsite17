@@ -1,0 +1,29 @@
+context.instance_exec do
+  panel 'Courses', class: 'attendances' do
+    div do
+      strong 'Student Number: '
+      code attendee.student_number
+      hr
+    end
+
+    attendances = attendee.course_attendances.includes(:course)
+    if attendances.any?
+      table_for attendances.sort_by { |a| a.course.try(:name) } do
+        column :course
+        column :grade
+        column :seminary_credit
+      end
+    else
+      strong('No Courses')
+    end
+
+    div class: 'attendance-comment' do
+      h4 'IBS Comments'
+      if attendee.ibs_comment.present?
+        para attendee.ibs_comment
+      else
+        para strong 'None'
+      end
+    end
+  end
+end

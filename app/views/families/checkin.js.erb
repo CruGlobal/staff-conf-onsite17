@@ -1,0 +1,3 @@
+$('.summary.families form').replaceWith('<%= j(render('family_summary_form', finances: @finances, family: @family)) %>')
+window.open('<%= nametag_family_path(@family) %>');
+window.location = '/families';

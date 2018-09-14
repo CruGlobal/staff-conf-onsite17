@@ -1,0 +1,27 @@
+# vim:ft=ruby:
+panel "Cost Adjustments (#{cost_adjustments.size})" do
+  if cost_adjustments.any?
+    table(class: 'finances-table') do
+      thead do
+        tr do
+          th 'Cost Type'
+          th 'Description'
+          th 'Amount'
+        end
+      end
+
+      tbody do
+        cost_adjustments.each do |ca|
+          tr do
+            td cost_type_name(ca)
+            td simple_format_attr(ca, :description)
+            td cost_adjustment_amount(ca), class: 'finances-table__price'
+          end
+      end
+      end
+    end
+  else
+    strong 'None'
+  end
+end
+

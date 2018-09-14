@@ -1,0 +1,35 @@
+# vim:ft=ruby:
+h2 'Import People and Families'
+
+columns do
+  column do
+    render partial: 'file_form'
+  end
+
+  column do
+    panel 'Help: Import People and Families' do
+      para <<-EOP
+        This form allows you to upload a spreadsheet file containing a number
+        of People records—both Attendees and Children. Family records will also
+        be created for these imported People.
+      EOP
+
+      para <<-EOP
+        For a large import, please be patient as this process may take a long
+        time.
+      EOP
+
+      h4 'Header Row'
+
+      para <<-EOP
+        The first row must contain column header names. We use the headers to
+        determine which rows map to which record attributes. They can appear in
+        any order however. The column headers are listed in the following
+        table. Each column is required, but only a few columns must have values
+        for every row. Other columns may be blank.
+      EOP
+
+      render 'families/new_spreadsheet/example_table', context: self
+    end
+  end
+end

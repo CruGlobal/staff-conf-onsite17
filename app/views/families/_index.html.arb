@@ -1,0 +1,24 @@
+# vim:ft=ruby:
+render 'autocomplete'
+
+context.instance_exec do
+  actions defaults: true do |family|
+    a 'Housing', href: housing_path(family_id: family.id)
+    a 'Payments', href: family_payments_path(family_id: family.id)
+    a 'Summary', href: summary_family_path(family)
+  end
+
+  selectable_column if policy.bulk_edit?
+
+  column('Family', sortable: :last_name) { |f| family_label(f) }
+  column(:staff_number) { |f| code f.staff_number }
+
+  column :address1
+  column :city
+  column :state
+  column(:country_code) { |f| country_name(f.country_code) }
+  column :zip
+
+  column :created_at
+  column :updated_at
+end

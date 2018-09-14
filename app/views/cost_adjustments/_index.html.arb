@@ -1,0 +1,15 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column('Person') { |ca| link_to(ca.person.full_name, ca.person) }
+  column('Type') { |ca| cost_type_name(ca) }
+  column(:price) do |ca|
+    humanized_money_with_symbol(ca.price) if ca.price.present?
+  end
+  column(:percent) { |ca| "#{ca.percent}%" if ca.percent.present? }
+  column(:description) { |ca| html_summary(ca.description) }
+  column :created_at
+  column :updated_at
+end

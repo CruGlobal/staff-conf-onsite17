@@ -1,0 +1,29 @@
+form.instance_exec do
+  if object.new_record?
+    object.build_housing_preference(housing_type: 'self_provided')
+  end
+
+  inputs 'Housing Preference', class: 'inputs housing_preference_attributes' do
+    semantic_fields_for :housing_preference do |hp|
+      hp.input :housing_type, as: :select, collection: housing_type_select,
+        include_blank: false
+
+      dynamic_preference_input(hp, :roommates, input_html: { rows: 4 })
+      dynamic_preference_input(hp, :beds_count)
+      dynamic_preference_input(hp, :single_room)
+
+      dynamic_preference_input(hp, :children_count)
+      dynamic_preference_input(hp, :bedrooms_count)
+      dynamic_preference_input(hp, :other_family)
+      dynamic_preference_input(hp, :accepts_non_air_conditioned)
+
+      dynamic_preference_input(hp, :location1)
+      dynamic_preference_input(hp, :location2)
+      dynamic_preference_input(hp, :location3)
+
+      hp.input :comment, input_html: { rows: 4 }
+
+      datepicker_input(hp, :confirmed_at)
+    end
+  end
+end

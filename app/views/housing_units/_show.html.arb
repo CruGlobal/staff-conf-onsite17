@@ -1,0 +1,33 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row :housing_facility
+        row(:housing_type) { |u| housing_type_label(u.housing_facility) }
+        row :name
+        row :occupancy_type
+        row :created_at
+        row :updated_at
+      end
+    end
+
+    column do
+      stays = housing_unit.stays.order(:arrived_at)
+      panel "Assignments (#{stays.size})", class: 'stays' do
+        if stays.any?
+          ol do
+            stays.each do |stay|
+              li do
+                text_node(link_to(stay.person.full_name, stay.person))
+                text_node(": #{join_stay_dates(stay)}")
+              end
+            end
+          end
+        else
+          strong('None')
+        end
+      end
+    end
+  end
+end

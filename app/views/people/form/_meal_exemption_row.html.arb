@@ -1,0 +1,48 @@
+# Creates a new row for the given Date. ex:
+# |     Date     |  Breakfast  |   Lunch    |   Dinner   |
+# |  October 20  |  [EXEMPT]   |  [EXEMPT]  |  [EXEMPT]  |
+form.instance_exec do
+  tr do
+    td { strong l date, format: :month }
+    MealExemption::TYPES.each do |t|
+      td do
+        name = "#{object.class.name.underscore}[meal_exemptions_attributes]"
+        name =
+          if types[t].present?
+            "#{name}[#{types[t].id}]".tap do |name|
+              insert_tag(
+                Arbre::HTML::Input,
+                type: :hidden,
+                name: "#{name}[id]",
+                value: types[t].id
+              )
+            end
+          else
+            "#{name}[#{index}]"
+          end
+
+        # Delete record checkbox
+        insert_tag(
+          Arbre::HTML::Input,
+          type: :checkbox,
+          name: "#{name}[_destroy]",
+          checked: types[t].blank?,
+          class: 'meal_exemptions_attributes__destroy_toggle'
+        )
+
+        insert_tag(
+          Arbre::HTML::Input,
+          type: :hidden,
+          name: "#{name}[date]",
+          value: date
+        )
+        insert_tag(
+          Arbre::HTML::Input,
+          type: :hidden,
+          name: "#{name}[meal_type]",
+          value: t
+        )
+      end
+    end
+  end
+end

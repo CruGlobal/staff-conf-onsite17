@@ -1,0 +1,32 @@
+@import "../widgets/buttons";
+
+#new_attendee,
+#edit_attendee,
+#new_child,
+#edit_child {
+  /**
+   * Theses styles are for the custom UI for Attendees' nested MealExemption
+   * records.
+   */
+  .meal_exemptions_attributes {
+    &__add_toggle {
+      cursor: pointer;
+    }
+
+    &__new-row {
+      background-color: rgba(255, 255, 0, 0.333);
+    }
+
+    &__new-btn {
+      @extend .action_item_button;
+
+      cursor: pointer;
+      float: right;
+      margin-right: 3em;
+    }
+  }
+}
+
+.course-inputs {
+  margin: 0 0 2em 0;
+}

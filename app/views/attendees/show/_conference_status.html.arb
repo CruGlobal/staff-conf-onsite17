@@ -1,0 +1,23 @@
+context.instance_exec do
+  panel 'Conference Status' do
+    div class: 'attributes_table' do
+      table do
+        tr do
+          th { 'Status' }
+          td { attendee.conference_status }
+        end
+
+        tr do
+          th { 'Last Changed At' }
+          td do
+            if attendee.conference_status_changed_at.present?
+              format_attribute(attendee, :conference_status_changed_at)
+            else
+              span('Never', class: :empty)
+            end
+          end
+        end
+      end
+    end
+  end
+end

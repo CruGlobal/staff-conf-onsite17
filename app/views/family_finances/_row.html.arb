@@ -1,0 +1,8 @@
+# vim:ft=ruby:
+tr do
+  td { row.description }
+
+  td(class: "finances-table__price #{'print-only' unless policy.show_finances?}") do
+    humanized_money_with_symbol row.price
+  end
+end

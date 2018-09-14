@@ -1,0 +1,48 @@
+.families.summary {
+  #main_content {
+    font-size: 1.25em;
+  }
+}
+
+.families.summary {
+  h2 {
+    margin-bottom: 1.5em;
+  }
+
+  table {
+    th { border-bottom: thin solid black; }
+    td { border: none; }
+  }
+
+  .finances-table {
+    &__title {
+      padding-top: 1.5em;
+    }
+
+    &__price {
+      text-align: right;
+    }
+
+    &__subtotal {
+      text-align: right;
+      font-size: 1.1em;
+
+      td {
+        padding-top: 3em;
+      }
+    }
+  }
+
+  .totals-table {
+    font-size: 1.25em;
+
+    &__amount {
+      font-weight: bolder;
+      text-align: right;
+    }
+  }
+
+  .checkin.actions {
+    display: none;
+  }
+}

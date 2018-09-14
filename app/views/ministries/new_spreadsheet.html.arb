@@ -1,0 +1,5 @@
+# vim:ft=ruby:
+columns do
+  column { render partial: 'ministries' }
+  column { render partial: 'hierarchy' }
+end

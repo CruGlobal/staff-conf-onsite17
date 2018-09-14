@@ -1,0 +1,16 @@
+# vim:ft=ruby:
+panel 'Vehicle Information', class: 'hide-on-email' do
+  table(class: 'vehicle-table') do
+    tbody do
+      tr { th 'License Plate(s)', colspan: 2, class: 'finances-table__title' }
+      tr do
+        td a(family.license_plates.present? ? family.license_plates : 'Click here to add license plate info', href: edit_family_path(family), target: '_blank')
+      end
+      tr { th 'Handicap Parking', colspan: 2, class: 'finances-table__title' }
+      tr do
+        td family.handicap? ? 'Yes' : 'No'
+      end
+    end
+  end
+end
+

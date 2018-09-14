@@ -1,0 +1,4 @@
+{ "housing" : <%== housing_unit_hierarchy.to_json %>,
+  "families" : <%== Attendee.includes(:family).order(:last_name, :first_name)
+                       .pluck(:first_name, :last_name, :family_id)
+                       .collect {|p| { label: [p[0], p[1]].join(' '), value: p[2] } }.to_json %>}

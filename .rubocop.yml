@@ -1,0 +1,70 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/**/*
+    - script/**/*
+    - vendor/**/*
+    - bin/**/*
+    - test/**/*
+    - lib/active_admin/axlsx/**/*
+
+  TargetRubyVersion:
+    2.3
+
+Rails:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+
+GuardClause:
+  MinBodyLength: 3
+
+Lint/RescueException:
+  Exclude:
+    - app/jobs/**/*
+
+MethodLength:
+  Severity: warning
+  Max: 15
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/BlockLength:
+  Max: 50
+  Exclude:
+    - app/admin/*.rb
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/LineLength:
+  Max: 120
+
+Naming/FileName:
+  Exclude:
+    - bundler-audit.rake
+    - Gemfile
+    - Guardfile
+
+Style/AndOr:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: False
+
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Lambda:
+  Exclude:
+      - config/**/*
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented

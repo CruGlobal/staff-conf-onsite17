@@ -1,0 +1,43 @@
+# vim:ft=ruby:
+panel 'Finances', class: 'finances_panel' do
+  stays = attendee.stays
+  if stays.any?
+    table do
+      tr do
+        th 'Individual Stays'
+        th 'Sub-total'
+      end
+
+      stays.each do |stay|
+        tr do
+          td { join_stay_dates(stay) }
+          td do
+            begin
+              result = Stay::SingleAttendeeCost.call(stay: stay)
+              text_node humanized_money_with_symbol result.total
+            rescue => e
+              div(class: 'flash flash_error') { e.message }
+            end
+          end
+        end
+      end
+    end
+  end
+
+  render 'cost_adjustments/summary_table', results: {
+    'Staff Conference' =>
+      StaffConference::ChargeAttendeeCost.call(attendee: attendee),
+    'Other Conferences' =>
+      Conference::ChargeAttendeeCost.call(attendee: attendee),
+
+    'Classes' => Course::ChargeAttendeeCost.call(attendee: attendee),
+    'Rec Pass' => RecPass::ChargePersonCost.call(person: attendee),
+
+    'Apartment Housing' =>
+      Stay::ChargeAttendeeApartment.call(attendee: attendee),
+    'Dormitory Housing' =>
+      Stay::ChargeAttendeeDormitory.call(attendee: attendee),
+    'Facility Use Fee' =>
+        FacilityUseFee::ChargeAttendeeCost.call(attendee: attendee)
+  }.freeze
+end

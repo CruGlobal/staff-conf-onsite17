@@ -1,0 +1,11 @@
+# vim:ft=ruby:
+return unless policy.show_finances?
+
+tr(class: 'finances-table__subtotal') do
+  td { raw '&nbsp;' }
+
+  td(class: 'finances-table__price') do
+    strong 'Subtotal: '
+    text_node humanized_money_with_symbol price
+  end
+end

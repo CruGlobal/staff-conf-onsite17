@@ -1,0 +1,20 @@
+context.instance_exec do
+  panel "Conferences (#{attendee.conferences.size})", class: 'conferences' do
+    if attendee.conferences.any?
+      ul do
+        attendee.conferences.each { |c| li { link_to(c.name, c) } }
+      end
+    else
+      strong('None')
+    end
+
+    div class: 'attendance-comment' do
+      h4 'Comments'
+      if attendee.conference_comment.present?
+        para attendee.conference_comment
+      else
+        para strong 'None'
+      end
+    end
+  end
+end

@@ -1,0 +1,28 @@
+# vim:ft=ruby:
+panel "Payments (#{payments.size})" do
+  table class: 'finances-table' do
+    thead do
+      tr do
+        th 'Payment Type'
+        th 'Cost Type'
+        th 'Description'
+        th 'Price'
+      end
+    end
+
+    tbody do
+      payments.each do |pay|
+        tr do
+          td do
+            payment_type_name(pay)
+          end
+          td { cost_type_name(pay) }
+          td { pay.description }
+          td class: 'finances-table__price' do
+            humanized_money_with_symbol(pay.price) if pay.price.present?
+          end
+        end
+      end
+    end
+  end
+end

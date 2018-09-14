@@ -1,0 +1,23 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      render 'attendees/show/conference_status', context: self
+      render 'attendees/show/attributes', context: self
+    end
+
+    column do
+      render 'attendees/show/conferences', context: self
+      render 'attendees/show/courses', context: self
+
+      render 'people/stays', person: attendee
+      render 'cost_adjustments/list_panel',
+             cost_adjustments: attendee.cost_adjustments
+      render 'people/meal_exemptions', person: attendee
+    end
+  end
+
+  render 'attendees/finances', attendee: attendee if current_user.finance? || current_user.admin?
+
+  active_admin_comments
+end

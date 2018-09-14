@@ -1,0 +1,27 @@
+# vim:ft=ruby:
+context.instance_exec do
+  panel 'Housing Preference' do
+    attributes_table_for family.housing_preference do
+      row(:housing_type) { |hp| housing_type_name(hp) }
+
+      housing_type = family.housing_preference.housing_type.to_sym
+
+      HousingPreference::HOUSING_TYPE_FIELDS.each do |attr, types|
+        if types.include?(housing_type)
+          row(attr) { |hp| simple_format_attr(hp, attr) }
+        end
+      end
+
+      row('Comments') { |hp| simple_format_attr(hp, :comment) }
+
+      row :confirmed_at do |hp|
+        if hp.confirmed_at.present?
+          status_tag :yes,
+                     label: "confirmed on #{l hp.confirmed_at, format: :month}"
+        else
+          status_tag :no, label: 'unconfirmed'
+        end
+      end
+    end
+  end
+end

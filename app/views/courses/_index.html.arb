@@ -1,0 +1,17 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column :position
+  column(:name) { |c| h4 c.name }
+  column :instructor
+  column(:price) { |c| humanized_money_with_symbol(c.price) }
+  column(:description) { |c| html_summary(c.description) }
+  column :week_descriptor
+  column :ibs_code
+  column :location
+  column('Attendees') { |c| link_to c.attendees.count, '' }
+  column :created_at
+  column :updated_at
+end

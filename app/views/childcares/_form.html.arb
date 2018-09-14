@@ -1,0 +1,14 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  inputs do
+    input :name, hint: 'Title of class including grade'
+    input :teachers,
+      hint: 'If more than one teacher please use commas between names'
+    input :location
+    input :room
+  end
+
+  actions
+end

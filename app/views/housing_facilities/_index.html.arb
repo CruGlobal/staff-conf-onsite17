@@ -1,0 +1,17 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column :name
+  column(:housing_type) { |hf| hf.housing_type.titleize }
+  column :cost_code
+  column :cafeteria
+  column :on_campus
+
+  column 'Units' do |hf|
+    link_to hf.housing_units.count, housing_facility_housing_units_path(hf)
+  end
+  column :created_at
+  column :updated_at
+end

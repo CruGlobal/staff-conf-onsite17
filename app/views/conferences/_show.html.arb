@@ -1,0 +1,39 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row :name
+        row(:price) { |c| humanized_money_with_symbol(c.price) }
+        row(:description) { |c| c.description&.html_safe }
+
+        row :start_at
+        row :end_at
+
+        row :staff_conference
+        row :waive_off_campus_facility_fee
+
+        row :created_at
+        row :updated_at
+      end
+    end
+
+    column do
+      size = conference.attendees.size
+
+      panel "Attendees (#{size})", class: 'attendees' do
+        if size.positive?
+          ul do
+            conference.attendees.each do |a|
+              li { link_to(a.full_name, a) }
+            end
+          end
+        else
+          strong('None')
+        end
+      end
+    end
+  end
+
+  active_admin_comments
+end

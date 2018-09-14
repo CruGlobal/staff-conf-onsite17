@@ -1,0 +1,120 @@
+// SASS variable overrides must be declared before loading up Active Admin's
+// styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "compass";
+
+@import "widgets/buttons";
+@import "widgets/inputs";
+@import "widgets/spreadsheets";
+@import "widgets/typography";
+@import "widgets/adjustments-table";
+@import "widgets/upload-job";
+
+// Specific Models
+// =================================
+
+// Attendee/Child ------------------
+@import "child/index";
+@import "person/form";
+@import "person/show";
+
+// Ministry ------------------------
+@import "ministry/hierarchy";
+@import "ministry/upload";
+
+//  Family -------------------------
+@import "family/edit";
+@import "family/summary";
+
+
+// Telephone
+@import "intlTelInput";
+@import "widgets/intl-tel-input-rails";
+
+
+// Select Boxes
+@import "chosen";
+@import "widgets/dropdown";
+@import "jquery.dropdown.1.6/dropdown";
+
+.print-only {
+  display: none;
+}
+
+.sidebar_section {
+  h4 {
+    margin-bottom: 0.5em;
+  }
+}
+
+.finances_panel {
+  border: 2px solid yellow;
+}
+
+.columns.housing {
+  width: 200%;
+
+  .column {
+    width: 360px !important;
+    margin-right: 10px !important;
+  }
+}
+
+.chosen-container {
+  span {
+    font-size: 75%;
+  }
+}
+
+body.housing {
+  #title_bar {
+    z-index: 0;
+  }
+
+  #search {
+    width: 500px;
+    height: 30px;
+    font-size: 150%;
+    margin-left: 30px
+  }
+
+  #housing_search_form, h2 {
+    float: left;
+  }
+
+  #title_bar h2 {
+    padding-top: 5px;
+  }
+}
+
+.index_as_table {
+  $page_padding: 60px;
+  $main_content_margin: 300px;
+  $table_margin: 15px;
+  $border-color: #e8e8e8;
+  $shadow-length: 10px;
+
+  $margin: $page_padding + $main_content_margin + $table_margin;
+
+  max-width: calc(100vw - #{$margin});
+  overflow: { x: scroll; y: hidden; }
+
+  @media(max-width: 1330px) {
+    border: 1px solid $border-color;
+    box-shadow: $shadow-length 0px $shadow-length -$shadow-length/2 $border-color;
+  }
+
+  table.index_table {
+    margin-bottom: 100px;
+  }
+}

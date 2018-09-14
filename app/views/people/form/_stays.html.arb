@@ -1,0 +1,6 @@
+form.instance_exec do
+  panel 'Housing Assignments', class: 'housing_assignments',
+                               'data-housing_unit-container' => true do
+    a 'Click here for Housing', href: housing_path(family_id: object.family.id) if object.family
+  end
+end

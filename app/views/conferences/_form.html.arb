@@ -1,0 +1,17 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  inputs do
+    input :name
+    money_input_widget(self, :price)
+    input :description
+    datepicker_input(self, :start_at)
+    datepicker_input(self, :end_at)
+
+    input :staff_conference
+    input :waive_off_campus_facility_fee
+  end
+
+  actions
+end

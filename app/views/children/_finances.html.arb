@@ -1,0 +1,49 @@
+# vim:ft=ruby:
+panel 'Finances', class: 'finances_panel' do
+  if child.stays.any?
+    stays = child.stays
+    if stays.any?
+
+      table do
+        tr do
+          th 'Dormatory Stays'
+          th 'Sub-total'
+        end
+
+        stays.each do |stay|
+          tr do
+            td { join_stay_dates(stay) }
+            td do
+              begin
+                result = Stay::SingleChildDormitoryCost.call(child: child,
+                                                             stay: stay)
+                text_node humanized_money_with_symbol result.total
+              rescue => e
+                div(class: 'flash flash_error') { e.message }
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  @results ||=
+    if child.age_group == :childcare
+      {
+        'Housing' => Stay::ChargeChildCost.call(child: child),
+        'Rec Pass' => RecPass::ChargePersonCost.call(person: child),
+        'Childcare' => Childcare::ChargeChildCost.call(child: child),
+        'Hot Lunches' => HotLunch::ChargeChildCost.call(child: child)
+      }
+    else
+      {
+        'Housing' => Stay::ChargeChildCost.call(child: child),
+        'Rec Pass' => RecPass::ChargePersonCost.call(person: child),
+        'Junior/Senior' => JuniorSenior::ChargeChildCost.call(child: child),
+        'Hot Lunches' => HotLunch::ChargeChildCost.call(child: child)
+      }
+    end
+
+  render 'cost_adjustments/summary_table', results: @results
+end

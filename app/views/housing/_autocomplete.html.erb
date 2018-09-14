@@ -1,0 +1,13 @@
+<%=  stylesheet_link_tag('jquery-ui/autocomplete') %>
+<%= form_tag('/housing', method: :get, id: 'housing_search_form') do %>
+  <%= text_field_tag :family_id, '', style: 'width: 500px;height:', placeholder: 'Search for a family', id: 'search' %>
+<% end %>
+<script type="text/javascript" charset="utf-8">
+  $( "#search" ).autocomplete({
+      source: {},
+      select: function(event, ui) {
+         document.location = '/housing?family_id=' + ui.item.value;
+         return false;
+      }
+  });
+</script>

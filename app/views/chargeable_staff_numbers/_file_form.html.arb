@@ -1,0 +1,34 @@
+# vim:ft=ruby:
+form_for 'import_spreadsheet', url: {action: 'import_spreadsheet'},
+    html: {multipart: true, class: 'upload-job-js' } do |f|
+  fieldset class: 'inputs' do
+    ol do
+      li class: 'file input' do
+        f.label :file, 'Select a File'
+        f.file_field :file
+        para class: 'inline-hints' do
+          'Must be an .ods, .csv, .xls, or .xlsx file.'
+        end
+      end
+      li class: 'boolean input' do
+        label do
+          f.check_box :delete_existing
+          span 'Delete Chargeable Staff IDs not listed in spreadsheet'
+        end
+      end
+      li class: 'boolean input' do
+        label do
+          f.check_box :skip_first
+          span 'Skip Header Row'
+        end
+      end
+    end
+  end
+
+  fieldset class: 'actions' do
+    ol do
+      li(class: 'action input_action') { submit_tag 'Submit' }
+      li(class: 'cancel') { link_to 'Cancel', chargeable_staff_numbers_path }
+    end
+  end
+end

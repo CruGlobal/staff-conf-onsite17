@@ -1,0 +1,28 @@
+.login_unauthorized {
+  $color: #9f6000;
+  $bg: #feefb3;
+
+  color: $color;
+  background-color: $bg;
+
+  border: 1px solid;
+  padding: 1em;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+
+  max-width: 50em;
+  margin: 5em auto;
+  clear: both;
+  overflow: auto;
+
+  &__lock {
+    float: left;
+    width: 5em;
+    padding-right: 1em;
+    fill: $color;
+  }
+
+  &__logout {
+    text-align: center;
+  }
+}

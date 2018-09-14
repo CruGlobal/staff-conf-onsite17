@@ -1,0 +1,46 @@
+# vim:ft=ruby:
+h2 'Import Organizational Hierarchy'
+
+render partial: 'file_form', locals: { action: :import_hierarchy }
+
+panel 'Help: Import Organizational Hierarchy' do
+  para <<-EOP
+    This form allows you to upload a spreadsheet file containing relationship
+    information between the ministries. This file defines which ministries are
+    "parents" of others.
+  EOP
+
+  h4 'File Format'
+
+  para <<-EOP
+    The given file can contain any number of rows or columns. Each cell in the
+    spreadsheet must contain the code of a ministry which already exists in the
+    system. Each row defines a single set of relationships between the
+    ministries in that row, where every ministry is set as the "parent" of the
+    ministry in the cell to its right.
+  EOP
+
+  h4 'Example File'
+
+  table class: 'ministry__upload__example-spreadsheet' do
+    tr { td 'USM'; td 'AIA';  td 'AIA' }
+    tr { td 'USM'; td 'AIA';  td 'AIAFHQ' }
+    tr { td 'USM'; td 'CITY'; td 'CITY' }
+    tr { td 'USM'; td 'CITY'; td 'CITYCONV' }
+    tr { td 'USM'; td 'FAML'; td 'FAML' }
+    tr { td 'USM'; td 'FAML'; td 'FL00' }
+    tr { td 'HQ';  td 'DS';   td 'DSADMIN' }
+    tr { td 'HQ';  td 'DS';   td 'DSPRC' }
+    tr { td 'HQ';  td 'DS';   td 'DSRCS' }
+    tr { td 'HQ';  td 'FSG';  td 'FSG' }
+    tr { td 'HQ';  td 'FSG';  td 'ACCOU' }
+    tr { td 'HQ';  td 'USDS'; td 'USDS' }
+    tr { td 'HQ';  td 'USDS'; td 'USDSDC' }
+    tr { td 'CM';  td 'CGL';  td 'CGL' }
+    tr { td 'CM';  td 'CGL';  td 'CGLFO' }
+    tr { td 'CM';  td 'CGP';  td 'CGP' }
+    tr { td 'CM';  td 'CGP';  td 'CGPFO' }
+    tr { td 'CM';  td 'CGN';  td 'CGN' }
+    tr { td 'CM';  td 'CGN';  td 'CGNFO' }
+  end
+end

@@ -1,0 +1,11 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  inputs do
+    input :name
+    input :occupancy_type
+  end
+
+  actions
+end

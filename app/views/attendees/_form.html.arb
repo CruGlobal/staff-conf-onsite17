@@ -1,0 +1,68 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  columns do
+    column do
+      inputs 'Basic', class: 'basic inputs' do
+        input :conference_status, as: :select,
+          collection: conference_status_select(attendee), include_blank: false
+
+        render 'people/form/family_selector', form: self
+
+        input :first_name
+
+        if param_family
+          input :last_name, input_html: { value: param_family.last_name }
+        else
+          input :last_name
+        end
+
+        input :name_tag_first_name
+        input :name_tag_last_name
+
+        input :tshirt_size
+        input :gender, as: :select, collection: gender_select
+        datepicker_input(self, :birthdate)
+        input :mobility_comment, input_html: { rows: 4 }
+        input :personal_comment, input_html: { rows: 4 }
+      end
+
+      inputs 'Requested Arrival/Departure' do
+        datepicker_input(self, :arrived_at, label: 'Arrival')
+        datepicker_input(self, :departed_at, label: 'Departure')
+      end
+
+      inputs 'Contact' do
+        input :email
+        input :phone
+        input :emergency_contact
+      end
+
+      inputs do
+        input :ministry_id, as: :string, hint: object.ministry || 'No Ministry Selected'
+        input :department
+        input :conferences, collection: conferences_select
+        input :conference_comment, input_html: { rows: 4 }
+        input :seminary, include_blank: false
+      end
+
+      inputs 'Rec Center Pass' do
+        datepicker_input(self, :rec_pass_start_at, label: 'Start')
+        datepicker_input(self, :rec_pass_end_at, label: 'End')
+      end
+    end
+
+    column do
+      render 'attendees/form/courses', form: self
+      render 'people/form/stays', form: self
+    end
+
+    column do
+      render 'people/form/cost_adjustments', form: self
+      render 'people/form/meal_exemptions', form: self, person: attendee
+    end
+  end
+
+  actions
+end

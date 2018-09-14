@@ -1,0 +1,26 @@
+# vim:ft=ruby:
+table class: 'adjustments-table' do
+  tr do
+    th { 'Category' }
+    th { 'Sub-Total' }
+    th { 'Adjustments' }
+    th { 'Total' }
+  end
+
+  results.each do |category, result|
+    tr do
+      td(class: 'adjustments-table__category') { category }
+
+      td { humanized_money_with_symbol result.subtotal }
+      td { humanized_money_with_symbol result.total_adjustments * -1 }
+      td { humanized_money_with_symbol result.total }
+    end
+  end
+
+    tr class: 'adjustments-table__grand-total' do
+      td(class: 'adjustments-table__category') { 'Grand Total' }
+      td { humanized_money_with_symbol results.values.map(&:subtotal).inject(Money.empty, :+) }
+      td { humanized_money_with_symbol(results.values.map(&:total_adjustments).inject(Money.empty, :+) * -1) }
+      td { humanized_money_with_symbol results.values.map(&:total).inject(Money.empty, :+) }
+    end
+end

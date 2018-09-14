@@ -1,0 +1,29 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  inputs 'Basic Info' do
+    input :last_name
+    input :staff_number
+    input :primary_person_id, as: :select, include_blank: false,
+                              collection: self.object.people.order(:birthdate)
+  end
+
+  inputs 'Address' do
+    input :address1
+    input :address2
+    input :city
+    input :state
+    input :country_code, as: :select, collection: country_select,
+      include_blank: false
+    input :zip
+  end
+  render 'families/form/housing_preference', form: self
+
+  inputs 'Car Info' do
+    input :license_plates, label: 'License plate numbers (comma separated; omit the state)', placeholder: 'i.e LV2COOK, LV2EAT'
+    input :handicap, label: 'Using Handicapped parking (hanging tag required)'
+  end
+
+  actions
+end

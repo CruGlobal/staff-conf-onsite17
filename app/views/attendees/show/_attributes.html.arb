@@ -1,0 +1,37 @@
+context.instance_exec do
+  attributes_table do
+    row :first_name
+    row :last_name
+    row :name_tag_first_name
+    row :name_tag_last_name
+
+    row :tshirt_size
+    row(:family) { |a| link_to family_label(a.family), family_path(a.family) }
+    row(:birthdate) { |a| birthdate_label(a) }
+    row(:age, sortable: :birthdate) { |a| age_label(a) }
+    row(:gender) { |a| gender_name(a.gender) }
+    row :mobility_comment
+    row :personal_comment
+
+    row(:email) { |a| mail_to(a.email) }
+    row(:phone) { |a| format_phone(a.phone) }
+    row :emergency_contact
+
+    row(:ministry) do |a|
+      if a.ministry_id.present?
+        link_to a.ministry.to_s, ministry_path(a.ministry_id)
+      end
+    end
+
+    row :seminary
+    row :department
+
+    row :rec_pass_start_at
+    row :rec_pass_end_at
+
+    row :arrived_at
+    row :departed_at
+    row :created_at
+    row :updated_at
+  end
+end

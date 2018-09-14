@@ -1,0 +1,47 @@
+# vim:ft=ruby:
+h2 'Import Chargeable Staff IDs'
+
+columns do
+  column do
+    render partial: 'file_form'
+  end
+
+  column do
+    panel 'Help: Import Chargeable Staff IDs' do
+      para <<-EOP
+        This form allows you to upload a spreadsheet file containing a number
+        of Staff IDs. Duplicate IDs will be ignored. If you prefer to replace
+        all existing Chargeable Staff IDs with those in the given spreadsheet,
+        use the "Delete existing Chargeable Staff IDs first" checkbox.
+      EOP
+
+      h4 'File Format'
+
+      para <<-EOP
+        The given file can contain any number of rows, each containing a Staff
+        ID in the first column.
+      EOP
+
+      h4 'Example File'
+
+      table class: 'example-spreadsheet' do
+        tr { td '100' }
+        tr { td '200' }
+        tr { td '300' }
+        tr { td '400' }
+        tr { td '500' }
+      end
+
+      h4 'Header Row'
+
+      para "Use 'Skip Header Row' if the first row contains a title. ex:"
+
+      table class: 'ministry__upload__example-spreadsheet' do
+        tr { td strong 'Chargeable Staff IDs' }
+        tr { td '100' }
+        tr { td '200' }
+        tr { td '300' }
+      end
+    end
+  end
+end

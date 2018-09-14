@@ -1,0 +1,4 @@
+# vim:ft=ruby:
+context.instance_exec do
+  h4 strong link_to(housing_facility.name, housing_facility_path(housing_facility))
+end

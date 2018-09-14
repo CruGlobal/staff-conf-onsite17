@@ -1,0 +1,25 @@
+context.instance_exec do
+  result = report.result
+
+  div do
+    a 'Download as csv', href: download_report_path(report)
+  end
+
+  table class: 'index_table' do
+    thead do
+      tr do
+        th 'Row'
+        result.columns.each(&method(:th))
+      end
+    end
+    tbody do
+      result.to_hash.each_with_index do |row, i|
+        tr class: i % 2 == 1 ? 'even' : '' do
+          td i + 1
+          row.values.each(&method(:td))
+        end
+      end
+    end
+  end
+
+end

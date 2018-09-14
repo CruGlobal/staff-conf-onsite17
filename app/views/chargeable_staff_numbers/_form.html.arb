@@ -1,0 +1,10 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  inputs do
+    input :staff_number
+  end
+
+  actions
+end

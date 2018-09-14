@@ -1,0 +1,34 @@
+# vim:ft=ruby:
+form.has_many :stays, heading: nil, title: title, for: stays do |f|
+  f.input(:housing_type, as: :select, collection: housing_type_select)
+
+  f.input(:housing_facility_id, as: :select, collection: [], input_html: { data: { value: f.object.housing_facility_id } })
+
+  hint =
+    if f.object.housing_unit_id
+      link_to('Unit Info',
+              housing_facility_housing_unit_path(f.object.housing_facility_id,
+                                                 f.object.housing_unit_id),
+              target: '_blank')
+    else
+      link_to('Unit Info', '#', onclick: 'return false')
+    end
+
+  f.input(
+    :housing_unit_id, as: :select, collection: [], hint: hint, input_html: {
+      data: { value: f.object.housing_unit_id }
+    }
+  )
+
+  datepicker_input(f, :arrived_at)
+  datepicker_input(f, :departed_at)
+
+  dynamic_stay_input(f, :percentage)
+  dynamic_stay_input(f, :single_occupancy)
+  dynamic_stay_input(f, :no_charge)
+  dynamic_stay_input(f, :no_bed)
+  dynamic_stay_input(f, :waive_minimum)
+
+  f.input :comment, input_html: { rows: 4 }
+  f.input :_destroy, as: :boolean, wrapper_html: { class: 'destroy' }
+end

@@ -1,0 +1,17 @@
+# vim:ft=ruby:
+# If creating a new family-member, do not let the family association be
+# editable.
+
+text_node stylesheet_link_tag('jquery-ui/autocomplete')
+
+form.instance_exec do
+  if (family_id = object.family_id || param_family&.id).present?
+    object.family_id = family_id
+  end
+
+  if policy.update_family?
+    input :family_id, as: :string, hint: object.family.to_s
+  elsif family_id.present?
+    input :family_id, as: :hidden
+  end
+end

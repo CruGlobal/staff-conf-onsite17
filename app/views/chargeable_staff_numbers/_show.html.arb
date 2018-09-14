@@ -1,0 +1,22 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row :staff_number
+        row :created_at
+      end
+    end
+    column do
+      panel 'Family', class: 'family' do
+        if (family = chargeable_staff_number.family)
+          strong { link_to(family.to_s, family_path(family)) }
+        else
+          strong 'None'
+        end
+      end
+    end
+  end
+
+  active_admin_comments
+end

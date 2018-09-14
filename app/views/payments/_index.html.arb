@@ -1,0 +1,22 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column(:family) { |p| link_to family_label(p.family), family_path(p.family) }
+
+  column('Type') { |p| cost_type_name(p) }
+  column(:price) do |p|
+    humanized_money_with_symbol(p.price) if p.price.present?
+  end
+
+  column :comment
+  column :business_unit
+  column :operating_unit
+  column :department_code
+  column :project_code
+  column :reference
+
+  column :created_at
+  column :updated_at
+end

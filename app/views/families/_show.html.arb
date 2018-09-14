@@ -1,0 +1,35 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row :last_name
+        row(:staff_number) do |f|
+          code f.staff_number
+          status_tag :yes, label: 'Chargeable' if f.chargeable_staff_number?
+        end
+
+        row :address1
+        row :address2
+        row :city
+        row :state
+        row(:country_code) { |f| country_name(f.country_code) }
+        row :zip
+
+        row :created_at
+        row :updated_at
+      end
+
+      render 'families/show/housing_preference', context: self
+    end
+
+    column do
+      render 'families/show/attendees', context: self
+      render 'families/show/children', context: self
+    end
+  end
+
+  render partial: 'finances', family: family if current_user.finance? || current_user.admin?
+
+  active_admin_comments
+end

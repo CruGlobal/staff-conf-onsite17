@@ -1,0 +1,47 @@
+# vim:ft=ruby:
+title = format('%s (Name Tag: %s)', report.attendee.full_name,
+                                    report.attendee.full_name_tag)
+
+panel content_tag(:span, title, class: 'title',
+                                data: { id: report.attendee.id,
+                                        type: report.attendee.type }) do
+  table class: 'finances-table' do
+    if report.attendee.birthdate.blank?
+      h4 'MISSING BIRTH DATE', style: 'color:red'
+    end
+    if report.attendee.email.blank?
+      h4 'MISSING EMAIL ADDRESS', style: 'color:red'
+    end
+
+    render 'family_finances/line_items', title: 'On Campus Assignments',
+      collection: report.on_campus_stays
+    render 'family_finances/line_items', title: 'Off Campus Assignments',
+      collection: report.off_campus_stays
+    render 'family_finances/adjustments', price: report.stay_adjustments
+
+    render 'family_finances/line_items', title: 'Facility Use',
+      collection: report.campus_facility_use
+    render 'family_finances/adjustments', price: report.facility_use_adjustments
+
+    render 'family_finances/line_items', title: 'Classes',
+      collection: report.courses
+    render 'family_finances/adjustments', price: report.course_adjustments
+
+    render 'family_finances/line_items', title: 'Staff Conference',
+      collection: report.staff_conference
+    render 'family_finances/adjustments',
+      price: report.staff_conference_adjustments
+
+    render 'family_finances/line_items', title: 'Other Conferences',
+      collection: report.conferences
+    render 'family_finances/adjustments',
+      price: report.conference_adjustments
+
+    render 'family_finances/line_items', title: 'Rec Center',
+      collection: report.rec_center
+    render 'family_finances/adjustments',
+      price: report.rec_center_adjustments
+
+    render 'family_finances/subtotal', price: report.subtotal
+  end
+end

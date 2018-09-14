@@ -1,0 +1,31 @@
+# vim:ft=ruby:
+title = format('%s (Name Tag: %s)', report.child.full_name,
+                                    report.child.full_name_tag)
+
+panel content_tag(:span, title, class: 'title', data: { id: report.child.id, type: report.child.type }) do
+  table class: 'finances-table' do
+    if report.child.birthdate.blank?
+      h2 'MISSING BIRTH DATE', style: 'color:red'
+    end
+    render 'family_finances/line_items', title: 'On Campus Assignments',
+      collection: report.on_campus_stays
+    render 'family_finances/adjustments', price: report.stay_adjustments
+
+    render 'family_finances/line_items', title: 'Childcare Weeks',
+      collection: report.childcare
+    render 'family_finances/adjustments',
+      price: report.childcare_adjustments
+
+    render 'family_finances/line_items', title: 'Hot Lunch Weeks',
+      collection: report.hot_lunches
+    render 'family_finances/adjustments',
+      price: report.hot_lunch_adjustments
+
+    render 'family_finances/line_items', title: 'Rec Center',
+      collection: report.rec_center
+    render 'family_finances/adjustments',
+      price: report.rec_center_adjustments
+
+    render 'family_finances/subtotal', price: report.subtotal
+  end
+end

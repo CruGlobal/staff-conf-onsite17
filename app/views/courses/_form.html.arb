@@ -1,0 +1,16 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  inputs do
+    input :name
+    input :instructor
+    money_input_widget(self, :price)
+    input :description
+    input :week_descriptor
+    input :ibs_code
+    input :location
+  end
+
+  actions
+end

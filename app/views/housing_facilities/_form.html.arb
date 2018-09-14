@@ -1,0 +1,27 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  inputs 'Details' do
+    input :name
+    input :housing_type
+    input :cost_code, as: :select, collection: cost_code_select
+    input :cafeteria
+    input :on_campus
+  end
+
+  inputs 'Address' do
+    input :street
+    input :city
+    input :state
+    input :zip
+    input :country_code, as: :select, collection: country_select
+  end
+
+  inputs 'CSU' do
+    input :csu_dorm_code
+    input :csu_dorm_block
+  end
+
+  actions
+end

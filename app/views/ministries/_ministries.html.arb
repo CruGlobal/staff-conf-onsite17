@@ -1,0 +1,66 @@
+# vim:ft=ruby:
+h2 'Import Ministries'
+
+render partial: 'file_form', locals: { action: :import_ministries }
+
+panel 'Help: Import Ministries' do
+  para <<-EOP
+    This form allows you to upload a spreadsheet file containing the code and
+    name for a number of ministries. A new ministry record will be created for
+    each row in the file.
+  EOP
+
+  para <<-EOP
+    In the event that a ministry record already exists with the given code,
+    instead of a new record being created, the existing record will just have
+    its name updated to match the name given in the uploaded file.
+  EOP
+
+  h4 'File Format'
+
+  para <<-EOP
+    The given file can contain any number of rows and each row will be read in
+    as a new ministry. The first column defines the ministry's code (which must
+    be unique). The second column define's the ministry's name, which may be
+    anything.
+  EOP
+
+  h4 'Example File'
+
+  table class: 'ministry__upload__example-spreadsheet' do
+    tr { td 'AIA';      td 'Athletes In Action' }
+    tr { td 'AIAFHQ';   td 'AIA Campus' }
+    tr { td 'CITY';     td 'City' }
+    tr { td 'CITYCONV'; td 'City Conveners' }
+    tr { td 'FAML';     td 'FamilyLife' }
+    tr { td 'FL00';     td 'Executive Team' }
+    tr { td 'DSADMIN';  td 'Donations Administration' }
+    tr { td 'DSPRC';    td 'Donation Processing' }
+    tr { td 'DSRCS';    td 'Donor Res/Cusomer Services' }
+    tr { td 'FSG';      td 'Financial Services Group' }
+    tr { td 'ACCOU';    td 'Accounting' }
+    tr { td 'USDS';     td 'US Digital Strategies' }
+    tr { td 'USDSDC';   td 'Digital Capacity' }
+    tr { td 'CGL';      td 'Campus Great Lakes Region' }
+    tr { td 'CGLFO';    td 'Campus Great Lakes Fld Office' }
+    tr { td 'CGP';      td 'Campus Great Plains Region' }
+    tr { td 'CGPFO';    td 'Campus Great Plains Fld Office' }
+    tr { td 'CGN';      td 'Campus Greater NW Region' }
+    tr { td 'CGNFO';    td 'Campus Greater NW Fld Office' }
+    tr { td 'USM';      td 'US Ministries' }
+    tr { td 'HQ';       td 'Core Services' }
+    tr { td 'DS';       td 'Donation Services' }
+    tr { td 'CM';       td 'Campus Ministry' }
+  end
+
+  h4 'Header Row'
+
+  para "Use the 'Skip Header Row' option if the first row contains a title. ex:"
+
+  table class: 'ministry__upload__example-spreadsheet' do
+    tr { td strong 'Code'; td strong 'Description' }
+    tr { td 'AIA';         td 'Athletes In Action' }
+    tr { td 'AIAFHQ';      td 'AIA Campus' }
+    tr { td 'CITY';        td 'City' }
+  end
+end

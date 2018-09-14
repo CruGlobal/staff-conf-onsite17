@@ -1,0 +1,44 @@
+# vim:ft=ruby:
+h2 'Import Housing Units'
+
+columns do
+  column do
+    render partial: 'file_form'
+  end
+
+  column do
+    panel 'Help: Import Housing Units' do
+      para <<-EOP
+        This form allows you to upload a spreadsheet file containing a number
+        of Housing Units. Existing Unit names will be ignored.
+      EOP
+
+      h4 'File Format'
+
+      para <<-EOP
+        The given file can contain any number of rows, in which each row
+        represents a Housing Unit. The firt column names the Housing Facility
+        to add the new Unit to and the following three columns describe the new
+        Unit. Currently the last column, "type," is ignored.
+      EOP
+
+      h4 'Example File'
+
+      table class: 'example-spreadsheet' do
+        tr { td 'Academic Village -E (private bathroom, with A/C)'; td 'A101'; td 'Single'; td 'DRM' }
+        tr { td 'Westfall (community bathroom, no A/C)'; td '904'; td 'Double'; td 'DRM' }
+      end
+
+      h4 'Header Row'
+
+      para "Use the 'Skip Header Row' option if the first row contains a title. ex:"
+
+      table class: 'example-spreadsheet' do
+        tr { th 'Facility Name'; th 'Room Number'; th 'CSU Room Type'; th 'Type' }
+        tr { td 'Academic Village -E (private bathroom, with A/C)'; td 'A101'; td 'Single'; td 'DRM' }
+        tr { td 'Academic Village -E (private bathroom, with A/C)'; td 'D7'; td 'Double'; td 'DRM' }
+        tr { td 'Westfall (community bathroom, no A/C)'; td '904'; td 'Double'; td 'DRM' }
+      end
+    end
+  end
+end

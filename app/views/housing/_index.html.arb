@@ -1,0 +1,120 @@
+# vim:ft=ruby:
+render 'autocomplete'
+
+@family = Family.find_by(id: params[:family_id]) if params[:family_id]
+
+if @family
+  active_admin_form_for @family, heading: nil do |f|
+    family = f.object
+
+    columns class: 'columns housing' do
+      column do
+        panel link_to(family, family, target: '_blank') do
+          span id: 'family_attributes', 'data-attributes' => family.housing_preference.attributes.to_json
+          mobility_comments = family.people.collect do |p|
+            "#{p.first_name}: #{p.mobility_comment}" if p.mobility_comment.present?
+          end.compact.join('<br>')
+
+          personal_comments = family.people.collect do |p|
+            "#{p.first_name}: #{p.personal_comment}" if p.personal_comment.present?
+          end.compact.join('<br>').gsub('Attendee Comment: ', '')
+
+          conference_comments = family.people.collect do |p|
+            "#{p.first_name}: #{p.conference_comment}" if p.conference_comment.present?
+          end.compact.join('<br>').gsub('Attendee Comment: ', '')
+
+          childcare_comments = family.people.collect do |p|
+            "#{p.first_name}: #{p.childcare_comment}" if p.childcare_comment.present?
+          end.compact.join('<br>').gsub('Attendee Comment: ', '')
+
+          ibs_comments = family.people.collect do |p|
+            "#{p.first_name}: #{p.ibs_comment}" if p.ibs_comment.present?
+          end.compact.join('<br>').gsub('Attendee Comment: ', '')
+
+          attributes_table_for family.housing_preference do
+            row :housing_type do |hp|
+              housing_type_label(hp.housing_type)
+            end
+            row :location1
+            row :location2
+            row :location3
+            row :beds_count
+            row :roommates
+            row :children_count
+            row :bedrooms_count
+            row :single_room
+            row :other_family
+            row :accepts_non_air_conditioned
+            row :comment do |hp|
+              hp.comment.to_s.gsub('Attendee Comment: ', '')
+            end
+            if mobility_comments.present?
+              row :mobility_issues do
+                mobility_comments.html_safe
+              end
+            end
+            if personal_comments.present?
+              row :personal_comments do
+                personal_comments.html_safe
+              end
+            end
+            if conference_comments.present?
+              row :conference_comments do
+                conference_comments.html_safe
+              end
+            end
+
+            if childcare_comments.present?
+              row :childcare_comments do
+                childcare_comments.html_safe
+              end
+            end
+
+            if ibs_comments.present?
+              row :ibs_comments do
+                ibs_comments.html_safe
+              end
+            end
+          end
+        end
+      end
+
+      if family.primary_person
+        people = [family.primary_person] + family.people.includes(:stays).order('birthdate').where('id <> ?', family.primary_person_id)
+      else
+        people = family.people.includes(:stays).order('birthdate')
+      end
+      people.each do |person|
+        column do
+          f.semantic_fields_for :people, person, data: '{a: 1}' do |pf|
+            panel_title = person.full_name
+            panel_title += ' (PRIMARY)' if family.primary_person_id == person.id
+            panel link_to(panel_title, person, target: '_blank') do
+              span id: "person_#{person.id}", 'data-attributes' => person.attributes.to_json
+              attributes_table_for person do
+                row :conference_status
+                row :age
+                row :conference_names
+                row :needs_bed
+                row :childcare_weeks do |a|
+                  if a.childcare_weeks.present?
+                    a.childcare_weeks.map {|w| w.to_i + 1}.join(', ')
+                  end
+                end
+                row :dates do
+                  join_stay_dates(person)
+                end
+              end
+              collection = [:stays, person.stays]
+              render 'people/form/stay', form: pf, stays: collection, title: nil
+            end
+          end
+        end
+      end
+
+    end
+    f.submit
+  end
+else
+
+end

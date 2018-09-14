@@ -1,0 +1,26 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row :code
+        row :name
+        row(:parent) do |m|
+          link_to m.parent, m.parent if m.parent.present?
+        end
+        row :created_at
+        row :updated_at
+      end
+
+      active_admin_comments
+    end
+
+    column do
+      if ministry.ancestors.any? || ministry.children.any?
+        render 'ministries/show/hierarchy', context: self
+      end
+
+      render 'ministries/show/members', context: self
+    end
+  end
+end

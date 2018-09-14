@@ -1,0 +1,26 @@
+---
+"lib/active_admin/resource":
+  ModuleInitialize:
+    enabled: false
+
+"lib/active_admin/axlsx":
+  Attribute:
+    enabled: false
+  ControlParameter:
+    enabled: false
+  DuplicateMethodCall:
+    enabled: false
+  InstanceVariableAssumption:
+    enabled: false
+  IrresponsibleModule:
+    enabled: false
+  ManualDispatch:
+    enabled: false
+  NilCheck:
+    enabled: false
+  TooManyInstanceVariables:
+    enabled: false
+  TooManyMethods:
+    enabled: false
+  UtilityFunction:
+    enabled: false

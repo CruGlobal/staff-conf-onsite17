@@ -1,0 +1,12 @@
+# vim:ft=ruby:
+context.instance_exec do
+  show_errors_if_any(self)
+
+  inputs do
+    input :code
+    input :name
+    select_ministry_widget(self, :parent)
+  end
+
+  actions
+end

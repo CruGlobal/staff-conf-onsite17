@@ -1,0 +1,56 @@
+
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row :first_name
+        row :last_name
+        row :name_tag_first_name
+        row :name_tag_last_name
+
+        row(:family) { |c| link_to family_label(c.family), family_path(c.family) }
+        row(:gender) { |c| gender_name(c.gender) }
+        row(:birthdate) { |c| birthdate_label(c) }
+        row(:age, sortable: :birthdate) { |c| age_label(c) }
+
+        row(:grade_level) { |c| grade_level_label(c) }
+        row :parent_pickup
+        row :needs_bed
+        row :rec_pass_start_at
+        row :rec_pass_end_at
+        row :created_at
+        row :updated_at
+      end
+
+      panel 'Requested Arrival/Departure', class: 'duration' do
+        attributes_table_for child do
+          row :arrived_at
+          row :departed_at
+        end
+      end
+
+      panel 'Childcare', class: 'childcare' do
+        attributes_table_for child do
+          row(:childcare) do |c|
+            link_to chilcare_spaces_label(c.childcare), c.childcare if c.childcare
+          end
+          row :childcare_deposit
+          row(:childcare_weeks) { |c| childcare_weeks_list(c) }
+          row(:hot_lunch_weeks) { |c| hot_lunch_weeks_list(c) }
+          row :childcare_comment
+        end
+      end
+    end
+
+    column do
+      render 'people/stays', person: child
+      render 'cost_adjustments/list_panel',
+             cost_adjustments: child.cost_adjustments
+      render 'people/meal_exemptions', person: child
+    end
+  end
+
+  render 'finances', child: child if current_user.finance?
+
+  active_admin_comments
+end

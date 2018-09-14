@@ -1,0 +1,11 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column :name
+  column :code
+  column(:course_price) { |c| humanized_money_with_symbol(c.course_price) }
+  column :created_at
+  column :updated_at
+end

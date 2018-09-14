@@ -1,0 +1,255 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  activerecord:
+    models:
+      chargeable_staff_number:
+        one: "Chargeable Staff ID"
+        other: "Chargeable Staff IDs"
+      childcare:
+        one: "Childcare Class"
+        other: "Childcare Classes"
+      cost_code:
+        one: "Housing Cost Code"
+        other: "Housing Cost Codes"
+      course:
+        one: "Class"
+        other: "Classes"
+      paper_trail:
+        version:
+          one: "Version"
+          other: "Versions"
+      user_variable:
+        one: "Variable"
+        other: "Variables"
+      ibs_course:
+        one: "IBS Course"
+        other: "IBS Courses"
+
+    attributes:
+      accounting_report/table:
+        intentional_blank: ""
+        spouse_first_name: "Spouse"
+        bus_unit: "MOOO"
+      accounting_report/row:
+        intentional_blank: ""
+        spouse_first_name: "Spouse"
+        bus_unit: "MOOO"
+      accounting_report:
+        intentional_blank: ""
+        spouse_first_name: "Spouse"
+        bus_unit: "MOOO"
+      chargeable_staff_number:
+        staff_number: "Staff ID"
+      child:
+        childcare: "Childcare Class"
+        childcare_suffixes:
+          childcare: "%{label} Childcare"
+          junior_senior: "%{label} JrSr"
+          post_high_school: "%{label}"
+        childcare_week_numbers:
+          none: "No Childcare Needed"
+        hot_lunch_week_numbers:
+          none: "No Hot Lunch Needed"
+        grade_level: "Age Group or Grade Level"
+        grade_levels:
+          age0: "Infant / Age 0"
+          age1: "Age 1"
+          age2: "Age 2"
+          age3: "Age 3"
+          age4: "Age 4"
+          age5: "Age 5 / Kindergarten"
+          grade1: "Grade 1"
+          grade2: "Grade 2"
+          grade3: "Grade 3"
+          grade4: "Grade 4"
+          grade5: "Grade 5"
+          grade6: "Grade 6"
+          grade7: "Grade 7"
+          grade8: "Grade 8"
+          grade9: "Grade 9"
+          grade10: "Grade 10"
+          grade11: "Grade 11"
+          grade12: "Grade 12"
+          grade13: "Grade 13 (Recently graduated High School)"
+          postHighSchool: "Post High School"
+        parent_pickup: "PM Car Line"
+      childcare:
+        position: 'Record Order'
+        room: "Room Number"
+        weeks:
+          week0: "Week 1"
+          week1: "Week 2"
+          week2: "Week 3"
+          week3: "Week 4"
+          week4: "Cru17"
+      conference:
+        position: 'Record Order'
+      cost_adjustment:
+        cost_types:
+          dorm_adult: "Adult Dorm (room & board) Charges"
+          dorm_child: "Child Dorm (room & board) Charges"
+          apartment_rent: "Apartment Rent"
+          facility_use: "Facility Use Fee for Off Campus Residents"
+          tuition_class: "Class Tuition"
+          tuition_mpd: "MPD Tuition"
+          tuition_track: "Track Tuition"
+          tuition_staff: "Staff Conference Tuition"
+          books: "Books"
+          rec_center: "Recreation Center"
+          lunch: "Lunch Charges"
+          childcare: "Childcare"
+          junior_senior: "Junior/Senior"
+      cost_code:
+        min_days: "Minimum Stay"
+      cost_code_charge:
+        max_days: "Maximum Stay"
+        adult: "Adult $/day"
+        teen: "Teen $/day"
+        child: "Child $/day"
+        infant: "Infant $/day"
+        child_meal: "Child Meal Only $/day"
+        single_delta: "Single Upcharge $/day"
+        _destroy: "Delete this record!"
+      course:
+        ibs_code: "IBS ID"
+        grades:
+          AU: 'AU (Auditing)'
+        position: 'Record Order'
+      course_attendance:
+        course: "Class"
+        grade: "Final Grade"
+        seminary_credit: "Request Additional Seminary Credit"
+      family:
+        address1: "Address 1"
+        address2: "Address 2"
+        country_code: "Country"
+        staff_number: "Staff ID"
+        zip: "Zip Code"
+      housing_facility:
+        country_code: "Country"
+        csu_dorm_code: "CSU Dorm Code"
+        csu_dorm_block: "CSU Dorm Block"
+        zip: "Zip Code"
+        housing_types:
+          dormitory: "Dormitory"
+          apartment: "Apartment"
+          self_provided: "Self-Provided"
+      housing_preference:
+        comment: "Housing Comments"
+        roommates: "Preferred Roommates"
+        beds_count: "# of Beds"
+        single_room: "Requests a single room"
+
+        children_count: "# of Children"
+        bedrooms_count: "# of Bedrooms"
+        other_family: "Name of a Family They Would be Able to Room with"
+        accepts_non_air_conditioned: "Willing to Accept a non A/C apartment"
+
+        location1: "Preferred Location #1"
+        location2: "Preferred Location #2"
+        location3: "Preferred Location #3"
+        confirmed_at: "Confirmed by Admin"
+      payment:
+        project_code: "Project ID"
+        department_code: "Department ID"
+        payment_types:
+          pre_paid: "Pre-Paid"
+          credit_card: "Credit Card"
+          cash_check: "Cash/Check"
+          business_account: "Business Account"
+          staff_code: "Staff ID"
+      person:
+        course_attendance: "Course"
+        arrived_at: "Requested Arrival"
+        departed_at: "Requested Departure"
+        rec_pass_start_at: "Rec Center Pass Start Date"
+        rec_pass_end_at: "Rec Center Pass End Date"
+        name_tag_first_name: "First name (Name tag)"
+        name_tag_last_name: "Last name (Name tag)"
+      stay:
+        arrived_at: "Arrival"
+        departed_at: "Departure"
+        no_charge: "Do not charge for this assignment"
+        waive_minimum: "Waive the minimum stay when calculating the charge for this apartment"
+        percentage: "Percentage of cost the occupant must pay"
+        _destroy: "Delete this record!"
+      user_variable:
+        value_types:
+          string: 'Text'
+          money: 'Money'
+          date: 'Date'
+          number: 'Number'
+          html: 'HTML'
+
+  active_admin:
+    dashboard:
+      title: "Dashboard"
+      welcome: "Welcome to the Onsite Staff Administration"
+      call_to_action: "To add new records, please use the menu at the top of the page."
+      updated: "Recently Updated"
+
+  services:
+    childcare:
+      car_line:
+        document:
+          title: 'Car Line'
+        header:
+          title: "Cru17 Kids Car Line Sign-In/Sign-Out"
+          date: "Date:"
+
+    family_finances:
+      childcare_deposit: "Deposit"
+      facility_use: "Fee"
+      no_fee: "No Fee"
+      unknown_housing: "Unknown Housing"
+      rec_pass: "Pass: %{start} - %{finish}"
+      seminary:
+        credit: "Seminary Credit: YES"
+        no_credit: "Seminary Credit: NO"
+    housing_unit:
+      errors:
+        no_facility: "Could not find HousingFacility: %{name}"
+    import:
+      errors:
+        existing_people: "The imported file contains people that already exist in the database:"
+        no_conference: "Could not find Conference, %{name}"
+        no_course: "Could not find Class, %{name}"
+    ministry:
+      errors:
+        too_few_columns: "Row #%{row} has too few columns. '%{line}'"
+        no_ministry: "The import file contains Ministries which do not exist in the database:"
+        no_ministry_code: "Row #%{row}, Column #%{col} references a ministry ('%{code}') which doesn't exist in the system."
+    spreadsheet:
+      errors:
+        unexpected_filename: "Unexpected filename: '%{name}'. Extension must be .ods, .csv, .xls, or .xlsx"
+    stay:
+      errors:
+        no_cost_code: "%{stay} does not have an associated cost code which can be applied to a stay of %{duration} days"
+        no_facility_type: "%{name} has an unknown facility type: '%{type}'"
+
+  date:
+    formats:
+      month: "%B %-d"
+  time:
+    formats:
+      month: "%B %-d"

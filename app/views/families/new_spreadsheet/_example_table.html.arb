@@ -1,0 +1,72 @@
+context.instance_exec do
+  table class: 'example-spreadsheet' do
+    tr { th 'Column Header'; th 'Value Required' }
+
+    tr { td 'Person Type'; td status_tag(:yes) }
+    tr { td 'Family'; td status_tag(:yes) }
+
+    tr { td 'First'; td status_tag(:yes) }
+    tr { td 'Last'; td status_tag(:yes) }
+    tr { td 'Name Tag Name Last'; td status_tag(:no) }
+    tr { td 'Name Tag Name First'; td status_tag(:no) }
+    tr { td 'Gender'; td status_tag(:no) }
+    tr { td 'Staff ID'; td status_tag(:no) }
+    tr { td 'Birthdate'; td status_tag(:no) }
+    tr { td 'Age'; td status_tag(:no) }
+    tr { td 'T-Shirt Size'; td status_tag(:no) }
+    tr { td 'Ethnicity'; td status_tag(:no) }
+
+    tr { td 'Mobility Needs Comment'; td status_tag(:no) }
+    tr { td 'Personal Comments'; td status_tag(:no) }
+
+    tr { td 'Address 1'; td status_tag(:no) }
+    tr { td 'Address 2'; td status_tag(:no) }
+    tr { td 'City'; td status_tag(:no) }
+    tr { td 'State'; td status_tag(:no) }
+    tr { td 'ZIP'; td status_tag(:no) }
+    tr { td 'Country'; td status_tag(:no) }
+    tr { td 'Cell'; td status_tag(:no) }
+    tr { td 'Email'; td status_tag(:no) }
+
+    tr { td 'Conference Choices'; td status_tag(:no) }
+    tr { td 'Conference Comments'; td status_tag(:no) }
+
+    tr { td 'Arrival Date'; td status_tag(:no) }
+    tr { td 'Departure Date'; td status_tag(:no) }
+
+    tr { td 'Housing Type Requested'; td status_tag(:no) }
+    tr { td 'Total Dorm Beds Requested'; td status_tag(:no) }
+    tr { td 'Single room requested'; td status_tag(:no) }
+    tr { td 'Dorm Requested Roommate'; td status_tag(:no) }
+    tr { td 'Dorm Requested Roommate Email'; td status_tag(:no) }
+    tr { td 'Apt Number Of Children'; td status_tag(:no) }
+    tr { td 'Apt Size Requested'; td status_tag(:no) }
+    tr { td 'Apt Sharing Requested'; td status_tag(:no) }
+    tr { td 'Accept NON-A/C Apt'; td status_tag(:no) }
+    tr { td 'Housing 1st Choice'; td status_tag(:no) }
+    tr { td 'Housing 2nd Choice'; td status_tag(:no) }
+    tr { td 'Housing 3rd Choice'; td status_tag(:no) }
+    tr { td 'Housing Comments'; td status_tag(:no) }
+
+    tr { td 'Age Group'; td status_tag(:no) }
+    tr { td 'Child Needs Dorm Bed'; td status_tag(:no) }
+    tr { td 'Childcare Deposit'; td status_tag(:no) }
+    tr { td 'Child Program Weeks'; td status_tag(:no) }
+    tr { td 'Hot Lunch Weeks'; td status_tag(:no) }
+    tr { td 'Childcare Comments'; td status_tag(:no) }
+
+    tr { td 'IBS Courses'; td status_tag(:no) }
+    tr { td 'IBS Comments'; td status_tag(:no) }
+
+    tr { td 'RecPass Start Date'; td status_tag(:no) }
+    tr { td 'RecPass End Date'; td status_tag(:no) }
+
+    tr { td 'Ministry Code'; td status_tag(:no) }
+    tr { td 'Hire Date'; td status_tag(:no) }
+    tr { td 'Employee Status'; td status_tag(:no) }
+    tr { td 'Caring Department'; td status_tag(:no) }
+    tr { td 'Strategy'; td status_tag(:no) }
+    tr { td 'Assignment Length'; td status_tag(:no) }
+    tr { td 'Pay Chartfield'; td status_tag(:no) }
+  end
+end

@@ -1,0 +1,46 @@
+// Styles for the app/assets/javascripts/ministry/select.coffee jQuery widget.
+.ministry {
+  &__hierarchy {
+    text-align: center;
+
+    &__ancestors,
+    &__children {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__ancestor,
+    &__this,
+    &__children {
+      &::before {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+
+        border-top: 20px solid rgba(0, 0, 0, 0.12);
+
+        margin: 0.5em auto;
+      }
+
+      &:first-child {
+        &::before {
+          content: none;
+        }
+      }
+    }
+
+    &__ancestor {
+    }
+
+    &__this {
+      font-weight: bolder;
+    }
+
+    &__child {
+    }
+  }
+}

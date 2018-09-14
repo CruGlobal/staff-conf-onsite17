@@ -1,0 +1,20 @@
+.adjustments-table {
+  &__category {
+    font-weight: bolder;
+  }
+
+  &__grand-total {
+    td {
+      padding-top: 1em;
+      border-top: 1px solid #ccc;
+      font-weight: bolder;
+
+      &:first-child {
+        color: #5E6469;
+        box-shadow: none;
+        text-shadow: #fff 0 1px 0;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

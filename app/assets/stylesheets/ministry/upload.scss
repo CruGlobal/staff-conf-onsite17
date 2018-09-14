@@ -1,0 +1,7 @@
+.ministry {
+  &__upload {
+    &__example-spreadsheet {
+      @extend .example-spreadsheet;
+    }
+  }
+}

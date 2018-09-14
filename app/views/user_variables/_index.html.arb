@@ -1,0 +1,11 @@
+# vim:ft=ruby:
+context.instance_exec do
+  actions
+  selectable_column if policy.bulk_edit?
+
+  column :code
+  column(:type) { |var| user_variable_type(var) }
+  column(:value) { |var| user_variable_label(var) }
+  column(:description) { |var| html_summary(var.description) }
+  column :updated_at
+end

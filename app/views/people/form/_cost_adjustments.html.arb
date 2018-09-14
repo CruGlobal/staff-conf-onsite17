@@ -1,0 +1,13 @@
+# vim:ft=ruby:
+form.instance_exec do
+  panel 'Cost Adjustments', class: 'cost_adjustments',
+                            'data-housing_unit-container' => true do
+    has_many :cost_adjustments, heading: nil do |f|
+      f.input :cost_type, as: :select, collection: cost_type_select
+      money_input_widget(f, :price)
+      f.input :percent
+      f.input :description, input_html: { rows: 4 }
+      f.input :_destroy, as: :boolean, wrapper_html: { class: 'destroy' }
+    end
+  end
+end

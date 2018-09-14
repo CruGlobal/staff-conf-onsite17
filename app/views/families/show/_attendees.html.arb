@@ -1,0 +1,19 @@
+# vim:ft=ruby:
+context.instance_exec do
+  attendees = family.attendees.load
+
+  panel 'Attendees' do
+    if attendees.any?
+      ul do
+        attendees.each do |p|
+          li link_to(p.full_name, attendee_path(p))
+        end
+      end
+    else
+      strong 'None'
+    end
+    div do
+      a 'New Attendee', href: new_attendee_path(family_id: family.id)
+    end
+  end
+end

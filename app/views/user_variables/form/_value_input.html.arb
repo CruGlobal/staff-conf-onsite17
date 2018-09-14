@@ -1,0 +1,33 @@
+form.instance_exec do
+  if object.new_record?
+    opts = {
+      label: object.class.human_attribute_name(:value),
+      input_html: { value: '' },
+      wrapper_html: { class: 'js-value-input' }
+    }
+
+    input :value_money,
+      opts.merge(as: :string, input_html: { value: '',
+                                            'data-money-input' => true })
+    input :value_date,
+      opts.merge(as: :datepicker, datepicker_options: {
+      changeYear: true, changeMonth: true, yearRange: 'c-80:c+10'
+    })
+    input :value_number, opts.merge(as: :number)
+    input :value_html, opts.merge(as: :ckeditor)
+    input :value_string, opts.merge(as: :string)
+  else
+    case object.value_type
+    when 'money'
+      money_input_widget(self, :value)
+    when 'date'
+      datepicker_input(self, :value)
+    when 'number'
+      input :value, as: :number
+    when 'html'
+      input :value, as: :ckeditor
+    else
+      input :value
+    end
+  end
+end

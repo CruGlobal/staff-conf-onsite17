@@ -1,0 +1,22 @@
+# vim:ft=ruby:
+context.instance_exec do
+  attributes_table do
+    row(:family) { |p| link_to family_label(p.family), family_path(p.family) }
+
+    row('Payment Type') { |p| payment_type_name(p) }
+    row('Cost Type') { |p| cost_type_name(p) }
+    row(:price) do |p|
+      humanized_money_with_symbol(p.price) if p.price.present?
+    end
+
+    row :comment
+    row :business_unit
+    row :operating_unit
+    row :department_code
+    row :project_code
+    row :reference
+
+    row :created_at
+    row :updated_at
+  end
+end

@@ -1,0 +1,35 @@
+# vim:ft=ruby:
+# Defines the view for the Meal Exemptions subform, nested in a Person's form.
+form.instance_exec do
+  inputs 'Meal Exemptions', class: 'meal_exemptions_attributes' do
+    # This warning is hidden via Javascript
+    h4 class: 'meal_exemptions_attributes__warning' do
+      text_node 'Checked Meal Exemptions will be '
+      strong 'deleted'
+    end
+
+    # A table of all of the meals this person has opted out of. Each row
+    # represents a day, and each column a single meal exemption in that day
+    table do
+      thead do
+        tr do
+          th 'Date'
+          MealExemption::TYPES.each { |t| th t }
+        end
+      end
+
+      tbody do
+        index = (MealExemption.last&.id || -1) + 1
+
+        person.meal_exemptions.order_by_date.each do |date, types|
+          render 'people/form/meal_exemption_row', form: self, date: date,
+                                                   types: types, index: index
+        end
+
+        div(id: 'meal_exemptions_attributes__js',
+            'data-nextindex' => index,
+            'data-types' => MealExemption::TYPES.join(','))
+      end
+    end
+  end
+end

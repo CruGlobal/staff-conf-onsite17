@@ -1,0 +1,29 @@
+# vim:ft=ruby:
+context.instance_exec do
+  columns do
+    column do
+      attributes_table do
+        row :name
+        row :code
+        row(:course_price) { |s| humanized_money_with_symbol(s.course_price) }
+        row :created_at
+        row :updated_at
+      end
+    end
+
+    column do
+      attendees = seminary.attendees
+      panel "Attendees (#{attendees.count})" do
+        if attendees.any?
+          ul do
+            attendees.each do |p|
+              li link_to(p.full_name, attendee_path(p))
+            end
+          end
+        else
+          strong 'None'
+        end
+      end
+    end
+  end
+end

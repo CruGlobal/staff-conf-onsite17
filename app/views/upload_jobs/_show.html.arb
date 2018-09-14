@@ -1,0 +1,10 @@
+# vim:ft=ruby:
+@data = Hash[
+  upload_job.as_json.map do |key, value|
+    ["data-#{key}", value]
+  end
+]
+
+div({class: 'upload-job-js'}.merge(@data)) do
+  para 'Fetching Status. Please wait...'
+end

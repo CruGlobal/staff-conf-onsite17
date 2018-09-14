@@ -1,0 +1,15 @@
+.bundle/config
+.git
+log/*
+tmp
+cache
+coverage
+node_modules
+.sass-cache
+public/mobile
+public/docs
+public/uploads
+public/dev-assets
+.idea
+vendor/ruby
+vendor/cache

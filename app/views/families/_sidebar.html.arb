@@ -1,0 +1,27 @@
+# vim:ft=ruby:
+context.instance_exec do
+  attendees = family.attendees.load
+  if attendees.any?
+    h4 strong 'Attendees'
+    ul do
+      attendees.each do |p|
+        li link_to(p.full_name, attendee_path(p))
+      end
+    end
+  end
+
+  children = family.children.load
+  if children.any?
+    h4 strong 'Children'
+    ul do
+      children.each do |p|
+        li link_to(p.full_name, child_path(p))
+      end
+    end
+  end
+
+  div class: 'action_items' do
+    span link_to('New Attendee', new_attendee_path(family_id: family.id), class: 'button')
+    span link_to('New Child', new_child_path(family_id: family.id), class: 'button')
+  end
+end
